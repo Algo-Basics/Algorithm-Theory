@@ -65,6 +65,7 @@ function answer(N, K, cards) {
       for (let k = j + 1; k < N; k++) {
         // Set 에 add 메서드를 사용해 합계를 추가할 수 있다.
         sums.add(cards[i] + cards[j] + cards[k]);
+        console.log(i, j, k);
       }
     }
   }
