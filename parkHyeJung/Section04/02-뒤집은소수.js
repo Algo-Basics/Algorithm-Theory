@@ -37,8 +37,7 @@ const reversePrime = arr => {
 
 const arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
 const N = arr.lenght;
-let result = reversePrime(arr);
-console.log(result);
+// let result1 = reversePrime(arr);
 
 /*
 [풀이 과정]
@@ -49,6 +48,38 @@ console.log(result);
 - 각 수가 소수인지 판별 : 소수 판별 알고리즘을 만든다.
 - 소수 판별 알고리즘? 2 ~ 각 수의 제곱근까지와 비교해 나뉘어 떨어지는것이 있는지 판별.
 
+*/
 
+function answer(arr) {
+  let answer = [];
+  for (let x of arr) {
+    // 뒤집어지는 수가 저장되는 res
+    let res = 0;
+    while (x) {
+      let t = x % 10;
+      res = res * 10 + t;
+      x = parseInt(x / 10);
+    }
+    if (isPrime(res)) answer.push(res);
+  }
+  return answer;
+}
+let result2 = answer(arr);
+console.log(result2);
+
+/*
+[답안 해설]
+- arr의 숫자들을 x 로 반복하면서, x의 각 자릿수를 뜯어서 자리를 바꾸는 방법이다.
+- x === 32 일 때.
+
+* 1번째 반복 : x === 32
+... t = x % 10 => 32를 10으로 나눈 나머지이므로  t === 2가 된다.
+... res = res * 10 + t => 0 * 10 + 2 이므로 res === 2가 된다.
+... x = parseInt(x / 10) => 32를 10으로 나눈 몫이므로 3이 된다.
+
+* 2번째 반복 : x === 3
+... t = x % 10 => 3을 10으로 나눈 나머지이므로 t === 3이 된다.
+... res = res * 10 + t => 2 * 10 + 3 이므로 23이 된다. (***)
+... x = parseInt(x / 10) => parseInt( 3 / 10 ) === 0 이기 때문에 while문이 종료된다.
 
 */
